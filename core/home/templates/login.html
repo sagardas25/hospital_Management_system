@@ -22,16 +22,12 @@
 
 
 
-            {%  if messages  %}
+            {%  if error  %}
 
                 <div class="#">
 
-                    {%  for key in messages  %}
 
-                        {{key}}
-
-                    {% endfor  %}
-
+                      <p>{{error}}</p>  
 
                 </div>
 
@@ -39,7 +35,9 @@
 
 
 
+         <form method="post">
 
+            {% csrf_token %}
 
             <div>
 
@@ -73,7 +71,7 @@
 
 
 
-
+         </form>
 
 
 
