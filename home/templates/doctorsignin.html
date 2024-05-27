@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>doctorSignIn</title>
+
+
+    <style>
+
+      *{
+
+      margin: 0px;
+      padding: 0px;
+
+       } 
+
+       .main{
+
+          background-color: burlywood;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 90vh;
+
+       }
+
+      .container{
+          background-color: brown; 
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 2%;
+          height: 80%;
+          width: 70%;
+      }
+
+      form{
+
+          background-color: grey;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 5%;
+          padding: 3%;
+          height: 70%;
+          width: 70%;
+      }
+
+      .note>h1{
+          background-color: red;
+          font-size: 20px;
+      }
+
+
+      .input_container{
+
+          background-color: blueviolet;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 90%;
+          height: 90%;
+          padding: 2%;
+
+
+      }
+
+      .input_file{
+        background-color: blanchedalmond;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1%;
+        margin-top: 1%;
+        
+      }
+
+      .inputField_file{
+
+        background-color: aquamarine;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 98%;
+       
+      }
+
+      .input{
+
+        /* background-color: antiquewhite; */
+        width: 78%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0.5%;
+        border: 1px solid black;
+
+      }
+
+      .inputField{
+
+        width: 98%;
+        outline: none;
+        padding: 0.5%;
+
+      }
+
+
+      .btnSubmit{
+
+        background-color: burlywood;
+        outline: none;
+        border: none;
+        margin-top: 2%;
+        width: 15%;
+        height: 10%;
+        padding: 1%;
+        border-radius: 5%;
+        font-weight: 700;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+          }         
+  
+
+
+  </style>
+
+
+</head>
+<body>
+    {% include "navbar.html" %}
+
+    <!-- form for doctor sign in  -->
+  <div class="main">
+    <div class="container">
+
+     <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="note">
+            <h1> DOCTOR REGISTER </h1>
+        </div>
+
+
+        <div class="input_container">
+
+            <div class="input">
+
+                {% render_field user_form.first_name class="inputField"  placeholder="First Name" %} 
+
+            </div>
+
+            <div class="input">
+
+                {% render_field user_form.last_name class="inputField" placeholder="Last Name" %} 
+
+            </div>
+
+      
+
+            <div class="input">
+
+                {% render_field user_form.username class="inputField" placeholder="Username" %} 
+
+            </div>
+
+            <div class="input">
+
+                {% render_field user_form.password  class="inputField" placeholder="Password" %} 
+
+            </div>
+
+            <div class="input">
+                {% render_field doctor_form.address class="inputField" placeholder="Address" %}
+            </div>
+
+              <div class="input">
+                {% render_field doctor_form.mobile  class="inputField" placeholder="Mobile Number" %}
+              </div>
+
+              <div class="input_file">
+                {% render_field doctor_form.profile_pic class="inputField_file" required="required"  placeholder="Profile Picture" %}
+              </div>
+
+
+            <button type="submit" class="btnSubmit">Register</button>
+
+
+        <!-- input container ends -->
+        </div>
+
+     </form>
+
+      <div class="txt">
+
+        <div class="log_redirect">Already have an account? <a href="doctorlogin">Login here</a></div>
+
+      </div>
+
+    </div>
+  </div>
+
+  
+
+</body>
+</html> 
+

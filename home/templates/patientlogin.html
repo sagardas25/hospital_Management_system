@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>patientLogIn</title>
+
+
+    <style>
+
+        .main{
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: blueviolet;
+            height: 90vh;
+
+        }
+
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 70%;
+            height: 70%;
+            /* background-color: aqua; */
+
+        }
+
+        form{
+
+            background-color: antiquewhite;
+            height: 60%;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6%;
+
+        }
+
+        /* .note>h2{
+
+            background-color: brown;
+            margin-bottom:2% ;
+
+        } */
+
+
+        .input_container{
+
+            background-color: brown;
+            height: 70%;
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3%;
+
+
+
+        }
+
+        .input{
+
+            height: 20%;
+            width: 97%;
+            /* background-color: bisque; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .inputField{
+
+            width: 97%;
+            height: 90%;
+            outline: none;
+            background-color: antiquewhite;
+            border: 1.5px solid black;
+            padding: 1%;
+
+
+        }
+
+        .txt{
+
+            margin-top: 2%;
+
+
+        }
+
+
+        .btnSubmit{
+
+            background-color: burlywood;
+            outline: none;
+            border: none;
+            margin-top: 2%;
+            width: 20%;
+            height: 20%;
+            padding: 1%;
+            border-radius: 8%;
+            font-weight: 700;
+
+                }
+
+
+
+    </style>
+
+
+
+
+
+
+</head>
+<body>
+    {% include "navbar.html" %}
+
+    <!-- form for admin log in -->
+
+<div class="main">
+    <div class="container">
+
+     <form method="post">
+        {% csrf_token %}
+
+        <div class="note">
+            <p>PATIENT LOGIN </p>
+        </div>
+
+
+        <div class="input_container">
+
+
+            <div class="input">
+
+                {% render_field form.username class="inputField" placeholder="Username" %} 
+
+            </div>
+
+            <div class="input">
+
+                {% render_field form.password class="inputField" placeholder="Password" %} 
+
+            </div>
+
+            <button type="submit" class="btnSubmit">Login</button>
+
+
+        <!-- input container ends -->
+        </div>
+
+     </form>
+      <div class="txt">
+
+        <div class="log_redirect">Don't have an account? <a href="{% url 'patientSignIn' %}">Login here</a></div>
+
+      </div>
+
+    </div>
+
+</div>
+  
+
+
+
+
+
+
+
+    
+</body>
+</html>
