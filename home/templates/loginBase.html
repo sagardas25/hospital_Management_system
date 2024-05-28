@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>doctorLogIn</title>
-
-
+    <title>Document</title>
 
     <style>
 
@@ -54,7 +52,7 @@
 
         .input_container{
 
-            background-color: brown;
+            /* background-color: brown; */
             height: 70%;
             width: 70%;
             display: flex;
@@ -114,19 +112,16 @@
                 }
 
 
+            
 
-
+        .error-message {
+            color: red;
+            margin-bottom: 5px;
+            font-weight: 600;
+              }
 
 
     </style>
-
-
-
-
-
-
-
-
 
 
 </head>
@@ -134,14 +129,13 @@
 
     {% include "navbar.html" %}
 
+         {% if user_type == 'doctor' %}
 
-
-
-   
+               
 <div class="main">
     <div class="container">
 
-     <form method="post">
+     <form method="POST">
         {% csrf_token %}
 
         <div class="note">
@@ -151,16 +145,26 @@
 
         <div class="input_container">
 
+            {% if messages %}
+            <div class="error-message">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
 
             <div class="input">
 
-                {% render_field form.username class="inputField"  placeholder="Username" %} 
+                <!-- {% render_field form.username class="inputField"  placeholder="Username" %}  -->
+                <input type="text" id="username" class="inputField" placeholder="Username" name="username" required>
 
             </div>
 
             <div class="input">
 
-                {% render_field form.password class="inputField"  placeholder="Password" %} 
+              <!-- {% render_field form.password1 class="inputField"  placeholder="Password" %}  -->
+              <input type="password" id="password" class="inputField" placeholder="Username" name="password" required>
 
             </div>
 
@@ -181,6 +185,74 @@
 
 </div>
   
+
+{% elif user_type == 'patient' %}  
+
+
+
+<div class="main">
+    <div class="container">
+
+     <form method="post">
+        {% csrf_token %}
+
+        <div class="note">
+            <h2>PATIENT LOGIN </h2>
+        </div>
+
+
+        <div class="input_container">
+
+            {% if messages %}
+            <div class="error-message">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
+
+            <div class="input">
+
+                <!-- {% render_field form.username class="inputField"  placeholder="Username" %}  -->
+                <input type="text" id="username" class="inputField" placeholder="Username" name="username" required>
+
+            </div>
+
+            <div class="input">
+
+              <!-- {% render_field form.password1 class="inputField"  placeholder="Password" %}  -->
+              <input type="password" id="password" class="inputField" placeholder="Username" name="password" required>
+
+            </div>
+
+            <button type="submit" class="btnSubmit">Login</button>
+
+
+
+        <!-- input container ends -->
+        </div>
+
+     </form>
+      <div class="txt">
+
+        <div class="log_redirect">Don't have an account? <a href="{% url 'patientSignIn' %}">sign in here</a></div>
+
+      </div>
+
+    </div>
+
+</div>
+  
+
+{% endif %}
+
+
+
+
+
+
 
     
 </body>

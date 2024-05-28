@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>patientSignIn</title>
-
+    <title>Document</title>
 
     <style>
 
@@ -33,7 +32,7 @@
             justify-content: center;
             align-items: center;
             gap: 2%;
-            height: 80%;
+            height: 90%;
             width: 70%;
         }
   
@@ -46,7 +45,7 @@
             align-items: center;
             gap: 5%;
             padding: 3%;
-            height: 70%;
+            height: 80%;
             width: 70%;
         }
   
@@ -65,7 +64,7 @@
             align-items: center;
             width: 90%;
             height: 90%;
-            padding: 2%;
+            
   
   
         }
@@ -136,12 +135,123 @@
   
     </style>
 
-
 </head>
+
 <body>
+    
     {% include "navbar.html" %}
 
-    <!-- form for admin sign in -->
+
+
+    {% if user_type == 'doctor' %}
+
+    <div class="main">
+        <div class="container">
+    
+         <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+    
+            <div class="note">
+                <h1> DOCTOR REGISTER </h1>
+            </div>
+    
+    
+            <div class="input_container">
+    
+                <div class="input">
+    
+                    {% render_field user_form.first_name class="inputField"  placeholder="First Name" %} 
+    
+                </div>
+    
+                <div class="input">
+    
+                    {% render_field user_form.last_name class="inputField" placeholder="Last Name" %} 
+    
+                </div>
+    
+          
+    
+                <div class="input">
+    
+                    {% render_field user_form.username class="inputField" placeholder="Username" %} 
+    
+                    {% if form.username.errors %}
+    
+                    <div style="color:red">
+                      {% for error in form.username.errors %}
+                         <p>{{error}}</p>
+    
+                      {% endfor %}
+                    </div>
+                    {% endif %}
+    
+                </div>
+    
+                <div class="input">
+    
+                    {% render_field user_form.password1  class="inputField" placeholder="Password" %} 
+    
+                    {% if form.password1.errors %}
+                     <div style="color:red">
+                      {% for error in form.password1.errors %}
+                          <p>{{error}}</p>
+                    
+                      {% endfor %}
+                     </div>
+                     {% endif %}
+    
+    
+    
+                </div>
+    
+                <div class="input">
+    
+                    {% render_field user_form.password2  class="inputField" placeholder="Confirm Password" %} 
+    
+                    {% if form.password2.errors %}
+                    <div style="color: red;">
+                        {% for error in form.password2.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+    
+                </div>
+    
+                <div class="input">
+                    {% render_field doctor_form.address class="inputField" placeholder="Address" %}
+                </div>
+    
+                  <div class="input">
+                    {% render_field doctor_form.mobile  class="inputField" placeholder="Mobile Number" %}
+                  </div>
+    
+                  <div class="input_file">
+                    {% render_field doctor_form.profile_pic class="inputField_file"  placeholder="Profile Picture" %}
+                  </div>
+    
+    
+                <button type="submit" class="btnSubmit">Register</button>
+    
+    
+            <!-- input container ends -->
+            </div>
+    
+         </form>
+    
+          <div class="txt">
+    
+            <div class="log_redirect">Already have an account? <a href="doctorlogin">Login here</a></div>
+    
+          </div>
+    
+        </div>
+      </div>
+    
+      
+      {% elif user_type == 'patient' %}    
+
 
 <div class="main">
     <div class="container">
@@ -188,7 +298,13 @@
 
             <div class="input">
 
-                {% render_field user_form.password class="inputField" required="required" placeholder="Password" %} 
+                {% render_field user_form.password1 class="inputField" required="required" placeholder="Password" %} 
+
+            </div>
+
+            <div class="input">
+
+                {% render_field user_form.password2 class="inputField" required="required" placeholder="Confirm Password" %} 
 
             </div>
 
@@ -223,6 +339,7 @@
 
 
   
+{% endif %}
 
 
 
@@ -230,6 +347,19 @@
 
 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
